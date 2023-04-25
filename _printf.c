@@ -90,7 +90,22 @@ void print_int(va_list args, int *count)
 	int num, digit = 1;
 
 	num = va_arg(args, int);
-	if (num < 0)
+	if (num == -2147483648)
+	{
+		putchar('-');
+		putchar('2');
+		(*count) += 2;
+		num = 147483648;
+		while (num / digit >= 10)
+		digit *= 10;
+		while (digit > 0)
+		{
+			putchar('0' + num / digit);
+			num %= digit;
+			digit /= 10;
+			(*count)++;
+		}									}
+	else if (num < 0)
 	{
 		_putchar('-');
 		num = -num;
