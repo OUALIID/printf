@@ -35,6 +35,9 @@ int print_formatted_string(const char *format, va_list args, int *i)
 		_putchar(format[*i]);
 		count++;
 		break;
+	case 'i':
+		print_int(args, &count);
+		break;
 	default:
 		_putchar('%');
 		_putchar(format[*i]);
@@ -74,4 +77,31 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
+}
+/**
+ * print_int - printf function for %i
+ * @args: arguments passed
+ * @count: a counter
+ * Return: void
+ */
+void print_int(va_list args, int *count)
+{
+	int num, digit = 1;
+
+	num = va_arg(args, int);
+	if (num < 0)
+	{
+		_putchar('-');
+		num = -num;
+		(*count)++;
+	}
+	while (num / digit >= 10)
+		digit *= 10;
+	while (digit > 0)
+	{
+		_putchar('0' + num / digit);
+		num %= digit;
+		digit /= 10;
+		(*count)++;
+	}
 }
