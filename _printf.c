@@ -35,6 +35,7 @@ int print_formatted_string(const char *format, va_list args, int *i)
 		_putchar(format[*i]);
 		count++;
 		break;
+	case 'd':
 	case 'i':
 		print_int(args, &count);
 		break;
