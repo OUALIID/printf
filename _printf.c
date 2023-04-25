@@ -93,7 +93,7 @@ int print_int_helper(int *num, int *count)
 		digit *= 10;
 	while (digit > 0)
 	{
-		putchar('0' + *num / digit);
+		_putchar('0' + *num / digit);
 		*num %= digit;
 		digit /= 10;
 		(*count)++;
@@ -112,8 +112,8 @@ void print_int(va_list args, int *count)
 
 	if (num == -2147483648)
 	{
-		putchar('-');
-		putchar('2');
+		_putchar('-');
+		_putchar('2');
 		(*count) += 2;
 		num = 147483648;
 		print_int_helper(&num, count);
