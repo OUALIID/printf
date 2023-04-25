@@ -79,6 +79,12 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+/**
+ * print_int_helper - print numbers
+ * @num: the number
+ * @count: counter
+ * Return: counter
+ */
 int print_int_helper(int *num, int *count)
 {
 	int digit = 1;
@@ -92,7 +98,7 @@ int print_int_helper(int *num, int *count)
 		digit /= 10;
 		(*count)++;
 	}
-	return (count);
+	return (*count);
 }
 /**
  * print_int - printf function for %i
