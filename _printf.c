@@ -79,6 +79,21 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+int print_int_helper(int *num, int *count)
+{
+	int digit = 1;
+
+	while (*num / digit >= 10)
+		digit *= 10;
+	while (digit > 0)
+	{
+		putchar('0' + *num / digit);
+		*num %= digit;
+		digit /= 10;
+		(*count)++;
+	}
+	return (count);
+}
 /**
  * print_int - printf function for %i
  * @args: arguments passed
@@ -87,37 +102,23 @@ int _printf(const char *format, ...)
  */
 void print_int(va_list args, int *count)
 {
-	int num, digit = 1;
+	int num = va_arg(args, int);
 
-	num = va_arg(args, int);
 	if (num == -2147483648)
 	{
 		putchar('-');
 		putchar('2');
 		(*count) += 2;
 		num = 147483648;
-		while (num / digit >= 10)
-		digit *= 10;
-		while (digit > 0)
-		{
-			putchar('0' + num / digit);
-			num %= digit;
-			digit /= 10;
-			(*count)++;
-		}									}
+		print_int_helper(&num, count);
+	}
 	else if (num < 0)
 	{
 		_putchar('-');
 		num = -num;
 		(*count)++;
+		print_int_helper(&num, count);
 	}
-	while (num / digit >= 10)
-		digit *= 10;
-	while (digit > 0)
-	{
-		_putchar('0' + num / digit);
-		num %= digit;
-		digit /= 10;
-		(*count)++;
-	}
+	else
+		print_int_helper(&num, count);
 }
