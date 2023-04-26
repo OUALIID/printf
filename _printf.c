@@ -51,7 +51,7 @@ int print_formatted_string(const char *format, va_list args, int *i)
 	return (count);
 }
 /**
- * _printf - printf function for %s %c %
+ * _printf - printf function for %s, %c, and %
  * @format: the sring format
  * Return: the number of characters printed
  */
