@@ -35,6 +35,9 @@ int print_formatted_string(const char *format, va_list args, int *i)
 		_putchar(format[*i]);
 		count++;
 		break;
+	case 'b':
+		print_binary(args, &count);
+		break;
 	case 'd':
 	case 'i':
 		print_int(args, &count);
@@ -127,4 +130,26 @@ void print_int(va_list args, int *count)
 	}
 	else
 		print_int_helper(&num, count);
+}
+/**
+ * print_binary - print a binary
+ * @args : va_list
+ * @count : int
+ */
+
+void print_binary(va_list args, int *count)
+{
+	int num = va_arg(args, int), i = 0, j, binary[32];
+
+	while (num > 0)
+	{
+		binary[i] = num % 2;
+		num = num / 2;
+		i++;
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		putchar('0' + binary[j]);
+		*count += 1;
+	}
 }
