@@ -149,7 +149,7 @@ void print_binary(va_list args, int *count)
 	}
 	for (j = i - 1; j >= 0; j--)
 	{
-		putchar('0' + binary[j]);
+		_putchar('0' + binary[j]);
 		*count += 1;
 	}
 }
