@@ -141,6 +141,11 @@ void print_binary(va_list args, int *count)
 {
 	int num = va_arg(args, int), i = 0, j, binary[32];
 
+	if (num == 0)
+	{
+		_putchar('0');
+		*count += 1;
+	}
 	while (num > 0)
 	{
 		binary[i] = num % 2;
