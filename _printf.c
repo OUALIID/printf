@@ -139,7 +139,7 @@ void print_int(va_list args, int *count)
 
 void print_binary(va_list args, int *count)
 {
-	int num = va_arg(args, int), i = 0, j, binary[32];
+	unsigned int num = va_arg(args, unsigned int), i = 0, j, binary[64];
 
 	if (num == 0)
 	{
@@ -152,8 +152,10 @@ void print_binary(va_list args, int *count)
 		num = num / 2;
 		i++;
 	}
-	for (j = i - 1; j >= 0; j--)
+	j = i;
+	while (j > 0)
 	{
+		j--;
 		_putchar('0' + binary[j]);
 		*count += 1;
 	}
